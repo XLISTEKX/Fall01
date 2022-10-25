@@ -5,15 +5,35 @@ using UnityEngine;
 public class GameplayControler : MonoBehaviour
 {
     public PlayerGamePlayControler playerGamePlayControler;
+    public UIControler uiControler;
     public GameObject[] particle;
     public float[] spawnChance;
     public Vector2 spawnOffset;
 
     public float spawnRate;
+    public bool isDead;
+    public uint score;
 
     private void Start()
     {
         InvokeRepeating("spawnObject", spawnRate, spawnRate);
+        InvokeRepeating("addScore", 5f, 3f);
+    }
+
+    private void Update()
+    {
+        if (isDead && Time.timeScale != 0)
+        {
+            CancelInvoke("addScore");
+            Time.timeScale = Mathf.Lerp(Time.timeScale, 0, 1.25f * Time.deltaTime);
+            if (Time.timeScale < 0.15f)
+            {
+                Time.timeScale = 0;
+
+                uiControler.openDeadScreen();
+            }
+                
+        }
     }
 
     void spawnObject()
@@ -29,5 +49,11 @@ public class GameplayControler : MonoBehaviour
             Instantiate(particle[0], new Vector2(xSpawnValue, 0) + spawnOffset, transform.rotation);
 
         }
+    }
+
+    void addScore()
+    {
+        score++;
+        uiControler.updateScore(score);
     }
 }

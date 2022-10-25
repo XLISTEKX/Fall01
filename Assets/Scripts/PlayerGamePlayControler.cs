@@ -12,7 +12,6 @@ public class PlayerGamePlayControler : MonoBehaviour
     public Vector2 gameplaySize;
 
     public GameObject gamePlayer;
-    public bool isDead;
 
     void Start()
     {
@@ -37,15 +36,7 @@ public class PlayerGamePlayControler : MonoBehaviour
             }
         }   
     }
-    private void Update()
-    {
-        if (isDead && Time.timeScale != 0)
-        {
-            Time.timeScale = Mathf.Lerp(Time.timeScale, 0, 1f * Time.deltaTime);
-            if (Time.timeScale < 0.15f)
-                Time.timeScale = 0;
-        }
-    }
+
     void moveCharacter(int direction)
     {
         float xValue;
