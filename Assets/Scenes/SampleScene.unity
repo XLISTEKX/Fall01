@@ -358,9 +358,11 @@ MonoBehaviour:
   particle:
   - {fileID: 8424334993243357603, guid: 6d48c0f11bc1aff4a841fb4dd0435091, type: 3}
   - {fileID: 6955233010000494752, guid: 845e1c58cfaafc142b1f8fcfc2218cf6, type: 3}
+  - {fileID: 8050270552854726375, guid: 68ba33c578454c74aa0a85cdf50f3bdf, type: 3}
   spawnChance:
   - 1
-  - 0.125
+  - 0.3
+  - 0.5
   spawnOffset: {x: 0, y: -7}
   spawnRate: 0.5
   isDead: 0

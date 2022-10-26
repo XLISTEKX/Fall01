@@ -40,9 +40,14 @@ public class GameplayControler : MonoBehaviour
     {
         short xSpawnValue = (short) Random.Range(-playerGamePlayControler.gameplaySize.x, playerGamePlayControler.gameplaySize.x);
 
-        if(Random.value < spawnChance[1])
+        float x = Random.value;
+        if(x < spawnChance[1])
         {
             Instantiate(particle[1], new Vector2(xSpawnValue, 0) + spawnOffset, transform.rotation);
+        }
+        else if (x < spawnChance[2])
+        {
+            Instantiate(particle[2], new Vector2(xSpawnValue, 0) + spawnOffset, transform.rotation);
         }
         else 
         {
