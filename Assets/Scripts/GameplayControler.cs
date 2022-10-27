@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class GameplayControler : MonoBehaviour
 {
+    [Header("SpawnRates")]
+    public uint cycle = 0;
+
     public PlayerGamePlayControler playerGamePlayControler;
     public UIControler uiControler;
     public GameObject[] particle;
@@ -45,10 +48,6 @@ public class GameplayControler : MonoBehaviour
         {
             Instantiate(particle[1], new Vector2(xSpawnValue, 0) + spawnOffset, transform.rotation);
         }
-        else if (x < spawnChance[2])
-        {
-            Instantiate(particle[2], new Vector2(xSpawnValue, 0) + spawnOffset, transform.rotation);
-        }
         else 
         {
             Instantiate(particle[0], new Vector2(xSpawnValue, 0) + spawnOffset, transform.rotation);
@@ -60,5 +59,13 @@ public class GameplayControler : MonoBehaviour
     {
         score++;
         uiControler.updateScore(score);
+        
+        if(score % 10 == 0)
+        {
+            CancelInvoke("spawnObject");
+            spawnRate *= 0.8f;
+            cycle++;
+            InvokeRepeating("spawnObject", 0, spawnRate);
+        }
     }
 }

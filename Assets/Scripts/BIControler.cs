@@ -10,6 +10,8 @@ public class BIControler : MonoBehaviour
     public float changeTimeRange;
     public float speed;
 
+    public float speedRate = 1;
+
 
     private void Start()
     {
@@ -17,7 +19,9 @@ public class BIControler : MonoBehaviour
 
         Invoke("changeSprite", x);
 
-        gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(0, speed);
+        Debug.Log(speedRate);
+        speedRate = 1 + GameObject.Find("EventSystem").GetComponent<GameplayControler>().cycle * 0.1f;
+        gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(0, speed * speedRate);
 
     }
 

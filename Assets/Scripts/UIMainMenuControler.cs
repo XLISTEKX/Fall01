@@ -1,13 +1,24 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class UIMainMenuControler : MonoBehaviour
 {
+    [Header("Offsets")]
     public GameObject rightOffset;
     public GameObject leftOffset;
     public GameObject middle;
+
+    [Header("Canvas")]
+    public GameObject SettingsTab;
+    public GameObject MainMenuTab;
+
+    [Header("Settings")]
+    public TMP_Text currentQualityTxt;
+    public TMP_Text currentVolumeTxt;
+    public Slider volumeSlider;
+
 
     public GameObject[] menuStates;
     short currentState = 0;
@@ -16,9 +27,10 @@ public class UIMainMenuControler : MonoBehaviour
 
     private void Start()
     {
-        currentMenuState = Instantiate(menuStates[0], transform);
+        currentMenuState = Instantiate(menuStates[0], middle.transform);
         currentMenuState.GetComponent<MainMenuStatesControler>().desVector = middle.transform.position;
     }
+
 
     public void changeMenuState(int state)
     {
@@ -36,7 +48,7 @@ public class UIMainMenuControler : MonoBehaviour
             currentMenuState.GetComponent<MainMenuStatesControler>().desVector = leftOffset.transform.position;
             currentMenuState.GetComponent<MainMenuStatesControler>().invokerDestroy();
 
-            currentMenuState = Instantiate(menuStates[currentState],transform);
+            currentMenuState = Instantiate(menuStates[currentState], middle.transform);
             currentMenuState.transform.position = rightOffset.transform.position;
             currentMenuState.GetComponent<MainMenuStatesControler>().desVector = middle.transform.position;
         }
@@ -53,7 +65,7 @@ public class UIMainMenuControler : MonoBehaviour
             currentMenuState.GetComponent<MainMenuStatesControler>().desVector = rightOffset.transform.position;
             currentMenuState.GetComponent<MainMenuStatesControler>().invokerDestroy();
 
-            currentMenuState = Instantiate(menuStates[currentState], transform);
+            currentMenuState = Instantiate(menuStates[currentState], middle.transform);
             currentMenuState.transform.position = leftOffset.transform.position;
             currentMenuState.GetComponent<MainMenuStatesControler>().desVector = middle.transform.position;
         }
@@ -86,5 +98,48 @@ public class UIMainMenuControler : MonoBehaviour
                 }
         }
     }
-    
+
+    public void openSettings(bool open)
+    {
+        if (open)
+        {
+            SettingsTab.SetActive(true);
+            MainMenuTab.SetActive(false);
+
+            updateSettings();
+        }
+        else
+        {
+            SettingsTab.SetActive(false);
+            MainMenuTab.SetActive(true);
+        }
+    }
+
+    public void updateSettings()
+    {
+        currentQualityTxt.text = QualitySettings.names[QualitySettings.GetQualityLevel()].ToUpper();
+    }
+
+    public void changeGraphicState()
+    {
+        short qualityLevel = (short) QualitySettings.GetQualityLevel();
+
+        if (QualitySettings.names.Length > qualityLevel + 1)
+        {
+            qualityLevel++;
+        }
+        else
+        {
+            qualityLevel = 0;
+        }
+        QualitySettings.SetQualityLevel(qualityLevel, false);
+        updateSettings();
+    }
+
+
+    public void updateVolumeState()
+    {
+        currentVolumeTxt.text = volumeSlider.value.ToString() + "%";
+
+    }
 }
