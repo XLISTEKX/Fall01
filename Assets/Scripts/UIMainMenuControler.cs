@@ -19,14 +19,22 @@ public class UIMainMenuControler : MonoBehaviour
     public TMP_Text currentVolumeTxt;
     public Slider volumeSlider;
 
+    [Header("Main Menu")]
+    public TMP_Text moneyTXT;
 
+    [Header("Dependencies")]
     public GameObject[] menuStates;
+    PlayerStatsInv playerStats;
     short currentState = 0;
 
     GameObject currentMenuState;
 
     private void Start()
     {
+        playerStats = gameObject.GetComponent<PlayerStatsInv>();
+
+        moneyTXT.text = playerStats.money.ToString();
+
         currentMenuState = Instantiate(menuStates[0], middle.transform);
         currentMenuState.GetComponent<MainMenuStatesControler>().desVector = middle.transform.position;
     }
@@ -132,7 +140,7 @@ public class UIMainMenuControler : MonoBehaviour
         {
             qualityLevel = 0;
         }
-        QualitySettings.SetQualityLevel(qualityLevel, false);
+        QualitySettings.SetQualityLevel(qualityLevel, true);
         updateSettings();
     }
 
