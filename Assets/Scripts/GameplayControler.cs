@@ -6,20 +6,25 @@ public class GameplayControler : MonoBehaviour
 {
     [Header("SpawnRates")]
     public uint cycle = 0;
-
+    public float spawnSpeedingRate;
+    public float maxSpeedRate;
+    public float minSpeedRate;
+    float spawnRate;
+    
+    [Header("Dependencies")]
     public PlayerGamePlayControler playerGamePlayControler;
     public UIControler uiControler;
     public GameObject[] particle;
     public float[] spawnChance;
     public Vector2 spawnOffset;
 
-    public float spawnRate;
+    
     public bool isDead;
     public uint score;
 
     private void Start()
     {
-        InvokeRepeating("spawnObject", spawnRate, spawnRate);
+        Invoke("spawnObject", spawnRate);
         InvokeRepeating("addScore", 5f, 3f);
     }
 
@@ -53,6 +58,12 @@ public class GameplayControler : MonoBehaviour
             Instantiate(particle[0], new Vector2(xSpawnValue, 0) + spawnOffset, transform.rotation);
 
         }
+
+
+        spawnRate = (maxSpeedRate - minSpeedRate) * Mathf.Pow(spawnSpeedingRate, -score) + minSpeedRate;
+        Debug.Log(spawnRate);
+        CancelInvoke("spawnObject");
+        Invoke("spawnObject", spawnRate);
     }
 
     void addScore()

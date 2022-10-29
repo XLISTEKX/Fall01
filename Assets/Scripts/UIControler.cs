@@ -32,7 +32,11 @@ public class UIControler : MonoBehaviour
             newBest.SetActive(true);
             PlayerPrefs.SetInt("HighScore", (int) currentScore) ;
             PlayerPrefs.Save();
+
         }
+        GameObject.FindGameObjectWithTag("EventSystem").GetComponent<PlayerStatsInv>().saveStats();
+
+        
         highscoreDeadScreen.text = "High Score: " + PlayerPrefs.GetInt("HighScore").ToString();
         
         

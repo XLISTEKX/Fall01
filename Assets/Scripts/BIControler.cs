@@ -20,7 +20,7 @@ public class BIControler : MonoBehaviour
         Invoke("changeSprite", x);
 
         Debug.Log(speedRate);
-        speedRate = 1 + GameObject.Find("EventSystem").GetComponent<GameplayControler>().cycle * 0.1f;
+        speedRate = 1 + GameObject.Find("EventSystem").GetComponent<GameplayControler>().score * 0.1f;
         gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(0, speed * speedRate);
 
     }

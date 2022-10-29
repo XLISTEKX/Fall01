@@ -32,11 +32,13 @@ public class UIMainMenuControler : MonoBehaviour
     private void Start()
     {
         playerStats = gameObject.GetComponent<PlayerStatsInv>();
+        playerStats.updateStats();
 
-        moneyTXT.text = playerStats.money.ToString();
+        
 
         currentMenuState = Instantiate(menuStates[0], middle.transform);
         currentMenuState.GetComponent<MainMenuStatesControler>().desVector = middle.transform.position;
+        moneyTXT.text = playerStats.money.ToString();
     }
 
 

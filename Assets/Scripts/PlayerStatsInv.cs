@@ -10,11 +10,18 @@ public class PlayerStatsInv : MonoBehaviour
     private void Start()
     {
         money = (uint) PlayerPrefs.GetInt("Money");
+        Debug.Log(money + "wczytane");
+    }
+
+    public void updateStats()
+    {
+        money = (uint)PlayerPrefs.GetInt("Money");
     }
 
     public void saveStats()
     {
         PlayerPrefs.SetInt("Money", (int) money);
+        Debug.Log(money + "zapisane");
         PlayerPrefs.Save();
     }
 }
