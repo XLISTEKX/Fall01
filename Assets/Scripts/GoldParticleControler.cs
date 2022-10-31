@@ -13,7 +13,8 @@ public class GoldParticleControler : MonoBehaviour
     private void Start()
     {
         ps = GetComponent<ParticleSystem>();
-        ps.emission.SetBurst(0, new ParticleSystem.Burst(0,moneyCount,1,0));
+       // ps.emission.SetBurst(0, new ParticleSystem.Burst(0,moneyCount,1,0));
+        ps.Emit(moneyCount);
         ps.trigger.AddCollider(GameObject.FindGameObjectWithTag("Player").gameObject.GetComponent<Collider2D>());
 
     }

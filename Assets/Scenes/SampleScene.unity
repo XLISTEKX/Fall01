@@ -395,7 +395,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5971241722509735212, guid: 3e21c537bdd67624b8a1b0e9622e1319, type: 3}
       propertyPath: moneyCount
-      value: 10
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5971241722509735215, guid: 3e21c537bdd67624b8a1b0e9622e1319, type: 3}
       propertyPath: m_RootOrder
@@ -614,10 +614,10 @@ ParticleSystemForceField:
   m_GameObject: {fileID: 598936315}
   m_Enabled: 1
   m_Parameters:
-    m_Shape: 3
+    m_Shape: 2
     m_StartRange: 0
-    m_EndRange: 16
-    m_Length: 1
+    m_EndRange: 30
+    m_Length: 30
     m_GravityFocus: 0
     m_RotationRandomness: {x: 0, y: 0}
     m_DirectionCurveX:
@@ -782,7 +782,7 @@ ParticleSystemForceField:
     m_GravityCurve:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 2
+      scalar: 2.5
       minScalar: 1
       maxCurve:
         serializedVersion: 2

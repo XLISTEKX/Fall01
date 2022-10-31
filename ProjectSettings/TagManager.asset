@@ -6,6 +6,7 @@ TagManager:
   tags:
   - UIControler
   - EventSystem
+  - playerModel
   layers:
   - Default
   - TransparentFX

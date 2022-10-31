@@ -6,13 +6,16 @@ using TMPro;
 public class UIMainMenuControler : MonoBehaviour
 {
     [Header("Offsets")]
-    public GameObject rightOffset;
-    public GameObject leftOffset;
-    public GameObject middle;
+    public RectTransform rightOffset;
+    public RectTransform leftOffset;
+    public RectTransform middle;
 
     [Header("Canvas")]
     public GameObject SettingsTab;
     public GameObject MainMenuTab;
+    public GameObject UpgradesTab;
+    public GameObject SkinsTab;
+    public GameObject ShopTab;
 
     [Header("Settings")]
     public TMP_Text currentQualityTxt;
@@ -21,6 +24,7 @@ public class UIMainMenuControler : MonoBehaviour
 
     [Header("Main Menu")]
     public TMP_Text moneyTXT;
+    public float cameraMoveSpeed;
 
     [Header("Dependencies")]
     public GameObject[] menuStates;
@@ -28,22 +32,36 @@ public class UIMainMenuControler : MonoBehaviour
     short currentState = 0;
 
     GameObject currentMenuState;
+    bool moveCamera;
+    Vector3 destinationUpgrade;
+    Vector3 destination;
 
     private void Start()
     {
+
         playerStats = gameObject.GetComponent<PlayerStatsInv>();
         playerStats.updateStats();
 
-        
+        destinationUpgrade = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width / 4, Screen.height / 2));
 
         currentMenuState = Instantiate(menuStates[0], middle.transform);
         currentMenuState.GetComponent<MainMenuStatesControler>().desVector = middle.transform.position;
         moneyTXT.text = playerStats.money.ToString();
     }
 
+    private void Update()
+    {
+        if (moveCamera)
+        {
+            Camera.main.gameObject.transform.position = Vector2.Lerp(Camera.main.gameObject.transform.position, destination, Time.deltaTime * cameraMoveSpeed);
+        }
+    }
+
 
     public void changeMenuState(int state)
     {
+        MainMenuStatesControler mainMenuStatesControler = currentMenuState.GetComponent<MainMenuStatesControler>();
+
 
         if(state > 0)
         {
@@ -55,12 +73,12 @@ public class UIMainMenuControler : MonoBehaviour
             {
                 currentState++;
             }
-            currentMenuState.GetComponent<MainMenuStatesControler>().desVector = leftOffset.transform.position;
-            currentMenuState.GetComponent<MainMenuStatesControler>().invokerDestroy();
+            mainMenuStatesControler.desVector = leftOffset.anchoredPosition;
+            mainMenuStatesControler.invokerDestroy();
 
             currentMenuState = Instantiate(menuStates[currentState], middle.transform);
-            currentMenuState.transform.position = rightOffset.transform.position;
-            currentMenuState.GetComponent<MainMenuStatesControler>().desVector = middle.transform.position;
+            currentMenuState.transform.position = rightOffset.position;
+            currentMenuState.GetComponent<MainMenuStatesControler>().desVector = middle.anchoredPosition;
         }
         else
         {
@@ -72,12 +90,12 @@ public class UIMainMenuControler : MonoBehaviour
             {
                 currentState--;
             }
-            currentMenuState.GetComponent<MainMenuStatesControler>().desVector = rightOffset.transform.position;
-            currentMenuState.GetComponent<MainMenuStatesControler>().invokerDestroy();
+            mainMenuStatesControler.desVector = rightOffset.anchoredPosition;
+            mainMenuStatesControler.invokerDestroy();
 
             currentMenuState = Instantiate(menuStates[currentState], middle.transform);
-            currentMenuState.transform.position = leftOffset.transform.position;
-            currentMenuState.GetComponent<MainMenuStatesControler>().desVector = middle.transform.position;
+            currentMenuState.transform.position = leftOffset.position;
+            currentMenuState.GetComponent<MainMenuStatesControler>().desVector = middle.anchoredPosition;
         }
         
     }
@@ -94,7 +112,7 @@ public class UIMainMenuControler : MonoBehaviour
                 }
             case 1:
                 {
-
+                    openUpgrades(true);
 
                     return;
 
@@ -102,13 +120,23 @@ public class UIMainMenuControler : MonoBehaviour
 
             case 2:
                 {
-                    Application.Quit();
+                    openSkins(true);
+
+                    return;
+                }
+            case 3:
+                {
+                    openShop(true);
 
                     return;
                 }
         }
     }
-
+    /*---------------------------------------------------------------------------------
+                                SETTINGS TAB
+     ----------------------------------------------------------------------------------
+     
+     */
     public void openSettings(bool open)
     {
         if (open)
@@ -152,4 +180,73 @@ public class UIMainMenuControler : MonoBehaviour
         currentVolumeTxt.text = volumeSlider.value.ToString() + "%";
 
     }
+
+    /*---------------------------------------------------------------------------------
+                                UPGRADES TAB
+     ----------------------------------------------------------------------------------
+     */
+
+    public void openUpgrades(bool open)
+    {
+        if (open)
+        {
+            UpgradesTab.SetActive(true);
+            MainMenuTab.SetActive(false);
+
+
+            destination = destinationUpgrade;
+
+            moveCamera = true;
+
+            
+
+        }
+        else
+        {
+            UpgradesTab.SetActive(false);
+            MainMenuTab.SetActive(true);
+            destination = new Vector3(0, 0, 0);
+        }
+    }
+
+    /*---------------------------------------------------------------------------------
+                                SKINS TAB
+     ----------------------------------------------------------------------------------
+     */
+
+    public void openSkins(bool open)
+    {
+        if (open)
+        {
+            SkinsTab.SetActive(true);
+            MainMenuTab.SetActive(false);
+
+        }
+        else
+        {
+            SkinsTab.SetActive(false);
+            MainMenuTab.SetActive(true);
+        }
+    }
+
+    /*---------------------------------------------------------------------------------
+                                Shop TAB
+     ----------------------------------------------------------------------------------
+     
+     */
+    public void openShop(bool open)
+    {
+        if (open)
+        {
+            ShopTab.SetActive(true);
+            MainMenuTab.SetActive(false);
+
+        }
+        else
+        {
+            ShopTab.SetActive(false);
+            MainMenuTab.SetActive(true);
+        }
+    }
+
 }

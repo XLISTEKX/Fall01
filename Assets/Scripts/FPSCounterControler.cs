@@ -17,7 +17,7 @@ public class FPSCounterControler : MonoBehaviour
     void Update()
     {
         float current = 0;
-        current = Time.frameCount / Time.time;
+        current = 1/ Time.deltaTime;
         avgFrameRate = (int)current;
         text.text = avgFrameRate.ToString() + " FPS";
     }

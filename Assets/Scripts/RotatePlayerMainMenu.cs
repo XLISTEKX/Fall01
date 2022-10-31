@@ -8,7 +8,7 @@ public class RotatePlayerMainMenu : MonoBehaviour
     public float speedChange;
     Rigidbody2D rigidbody2d;
 
-    float x, y, z;
+    float x, y;
 
 
     private void Start()
@@ -21,13 +21,13 @@ public class RotatePlayerMainMenu : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        gameObject.transform.Rotate(x * Time.deltaTime, y * Time.deltaTime,0);
+        gameObject.transform.Rotate(x * Time.deltaTime * speed, y * Time.deltaTime * speed,0);
     }
 
     void changeToRandomValue()
     {
-        x = Random.Range(-speed, speed);
-        y = Random.Range(-speed, speed);
-        z = Random.Range(-speed, speed);
+        x = Random.Range(-1f, 1f);
+        y = Random.Range(-1f, 1f);
+
     }
 }
