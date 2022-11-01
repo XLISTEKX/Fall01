@@ -16,6 +16,7 @@ public class UIMainMenuControler : MonoBehaviour
     public GameObject UpgradesTab;
     public GameObject SkinsTab;
     public GameObject ShopTab;
+    public GameObject CaseTab;
 
     [Header("Settings")]
     public TMP_Text currentQualityTxt;
@@ -25,6 +26,9 @@ public class UIMainMenuControler : MonoBehaviour
     [Header("Main Menu")]
     public TMP_Text moneyTXT;
     public float cameraMoveSpeed;
+
+    [Header("Shop Menu")]
+    public TMP_Text shopMoneyTXT;
 
     [Header("Dependencies")]
     public GameObject[] menuStates;
@@ -240,12 +244,34 @@ public class UIMainMenuControler : MonoBehaviour
         {
             ShopTab.SetActive(true);
             MainMenuTab.SetActive(false);
+            updateShop();
+            
 
         }
         else
         {
             ShopTab.SetActive(false);
             MainMenuTab.SetActive(true);
+        }
+    }
+
+    public void updateShop()
+    {
+        shopMoneyTXT.text = playerStats.money.ToString();
+    }
+
+    public void openCase(bool open)
+    {
+        if (open)
+        {
+            CaseTab.SetActive(true);
+            ShopTab.SetActive(false);
+
+        }
+        else
+        {
+            CaseTab.SetActive(false);
+            ShopTab.SetActive(true);
         }
     }
 

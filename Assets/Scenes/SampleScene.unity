@@ -614,7 +614,7 @@ ParticleSystemForceField:
   m_GameObject: {fileID: 598936315}
   m_Enabled: 1
   m_Parameters:
-    m_Shape: 2
+    m_Shape: 3
     m_StartRange: 0
     m_EndRange: 30
     m_Length: 30
