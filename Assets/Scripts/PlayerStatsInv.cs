@@ -6,9 +6,12 @@ public class PlayerStatsInv : MonoBehaviour
 {
     [Header("Inventory")]
     public uint money;
+    public List<GameObject> skins;
+    public GameObject currentSkin;
 
     private void Start()
     {
+        currentSkin = skins[0];
         money = (uint) PlayerPrefs.GetInt("Money");
         Debug.Log(money + "wczytane");
     }

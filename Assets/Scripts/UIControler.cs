@@ -23,6 +23,8 @@ public class UIControler : MonoBehaviour
 
     public void openDeadScreen()
     {
+        Destroy(GameObject.FindGameObjectWithTag("GameSettings"));
+
         Screens[0].SetActive(false);
         Screens[1].SetActive(true);
         scoreDeadScreen.text = "Score: " + currentScore.ToString();

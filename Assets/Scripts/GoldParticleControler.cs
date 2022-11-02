@@ -15,10 +15,13 @@ public class GoldParticleControler : MonoBehaviour
         ps = GetComponent<ParticleSystem>();
        // ps.emission.SetBurst(0, new ParticleSystem.Burst(0,moneyCount,1,0));
         ps.Emit(moneyCount);
-        ps.trigger.AddCollider(GameObject.FindGameObjectWithTag("Player").gameObject.GetComponent<Collider2D>());
+        Invoke("updateTriger", 0.01f);
 
     }
-
+    void updateTriger()
+    {
+        ps.trigger.AddCollider(GameObject.FindGameObjectWithTag("Player").gameObject.GetComponent<Collider2D>());
+    }
     private void OnParticleTrigger()
     {
         int trigeredParticels = ps.GetTriggerParticles(ParticleSystemTriggerEventType.Enter, particles);

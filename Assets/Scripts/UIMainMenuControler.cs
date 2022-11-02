@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using TMPro;
+using Unity.VisualScripting;
 
 public class UIMainMenuControler : MonoBehaviour
 {
@@ -26,6 +27,7 @@ public class UIMainMenuControler : MonoBehaviour
     [Header("Main Menu")]
     public TMP_Text moneyTXT;
     public float cameraMoveSpeed;
+    public CaseOpeningControler caseOpeningControl;
 
     [Header("Shop Menu")]
     public TMP_Text shopMoneyTXT;
@@ -50,7 +52,7 @@ public class UIMainMenuControler : MonoBehaviour
 
         currentMenuState = Instantiate(menuStates[0], middle.transform);
         currentMenuState.GetComponent<MainMenuStatesControler>().desVector = middle.transform.position;
-        moneyTXT.text = playerStats.money.ToString();
+        updateMenu();
     }
 
     private void Update()
@@ -59,6 +61,10 @@ public class UIMainMenuControler : MonoBehaviour
         {
             Camera.main.gameObject.transform.position = Vector2.Lerp(Camera.main.gameObject.transform.position, destination, Time.deltaTime * cameraMoveSpeed);
         }
+    }
+    public void updateMenu()
+    {
+        moneyTXT.text = playerStats.money.ToString();
     }
 
 
@@ -110,6 +116,7 @@ public class UIMainMenuControler : MonoBehaviour
         {
             case 0:
                 {
+                    GameObject.FindGameObjectWithTag("GameSettings").GetComponent<GameSettingsControler>().playerSkin = playerStats.currentSkin;
                     SceneManager.LoadScene(1);
 
                     return;
@@ -252,6 +259,7 @@ public class UIMainMenuControler : MonoBehaviour
         {
             ShopTab.SetActive(false);
             MainMenuTab.SetActive(true);
+            updateMenu();
         }
     }
 
@@ -260,16 +268,19 @@ public class UIMainMenuControler : MonoBehaviour
         shopMoneyTXT.text = playerStats.money.ToString();
     }
 
-    public void openCase(bool open)
+    public void openCase(int CaseIndex)
     {
-        if (open)
+        if (CaseIndex >= 0)
         {
+            caseOpeningControl.setCase(CaseIndex);
+
             CaseTab.SetActive(true);
             ShopTab.SetActive(false);
 
         }
         else
         {
+            updateShop();
             CaseTab.SetActive(false);
             ShopTab.SetActive(true);
         }

@@ -15,6 +15,7 @@ public class PlayerGamePlayControler : MonoBehaviour
 
     void Start()
     {
+        gamePlayer = Instantiate(GameObject.FindGameObjectWithTag("GameSettings").GetComponent<GameSettingsControler>().playerSkin, transform.position + new Vector3(0,3.5f,0),transform.rotation);
         gameScreenSize = new Vector2(Screen.width, Screen.height);
 
         gameplaySize = Camera.main.ViewportToWorldPoint(new Vector2(1, 1));
