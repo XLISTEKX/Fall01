@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 598936319}
   - component: {fileID: 598936325}
   - component: {fileID: 598936322}
+  - component: {fileID: 302835306868789934}
   m_Layer: 0
   m_Name: Triangle
   m_TagString: Player
@@ -621,3 +622,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   deathParticles: {fileID: 5941708697924118003, guid: 4dc5040af9ba4ff4ba26fac4c81b11ab, type: 3}
+--- !u!114 &302835306868789934
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8638408520799154061}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f780f14139035a44a622b6bc0d58b88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skinName: Triangle
+  skinCost: 10
+  rarityColor: {r: 0, g: 1, b: 0, a: 1}

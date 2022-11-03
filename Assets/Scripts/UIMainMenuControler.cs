@@ -44,7 +44,7 @@ public class UIMainMenuControler : MonoBehaviour
 
     private void Start()
     {
-
+        
         playerStats = gameObject.GetComponent<PlayerStatsInv>();
         playerStats.updateStats();
 
