@@ -2166,7 +2166,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &360703018
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2411,7 +2411,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 1608.8707, y: -54}
+  m_AnchoredPosition: {x: 1608.8708, y: -54}
   m_SizeDelta: {x: 514.1643, y: 108}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &417227082
@@ -2762,7 +2762,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -24.999954, y: 0}
+  m_AnchoredPosition: {x: -24.999939, y: 0}
   m_SizeDelta: {x: -250, y: -200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &434668796
@@ -7335,7 +7335,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &916996119
 RectTransform:
   m_ObjectHideFlags: 0
@@ -8632,7 +8632,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Clothgames 2022
 
-    0.0.8'
+    0.0.9'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 3ae455446cdcba54992a476ca4463267, type: 2}
   m_sharedMaterial: {fileID: 7561979788457465422, guid: 3ae455446cdcba54992a476ca4463267, type: 2}
@@ -10169,7 +10169,7 @@ Canvas:
   m_GameObject: {fileID: 1327201197}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 0
+  m_RenderMode: 1
   m_Camera: {fileID: 519420031}
   m_PlaneDistance: 1
   m_PixelPerfect: 0
@@ -10254,6 +10254,7 @@ MonoBehaviour:
   - {fileID: 478208823450120092, guid: e282b2470fa28cd45a52245531c6ab09, type: 3}
   - {fileID: 478208823450120092, guid: 67ebe3af73217b04bad40fb3931c1234, type: 3}
   - {fileID: 3190243796202637947, guid: 8ad810fcb4fb75e40a474409cbec547c, type: 3}
+  - {fileID: 478208823450120092, guid: a2f27b1fdfb000f4a8a6506bd3f725d2, type: 3}
 --- !u!114 &1327201204
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -8,6 +8,7 @@ TagManager:
   - EventSystem
   - playerModel
   - GameSettings
+  - Minesweeper
   layers:
   - Default
   - TransparentFX
