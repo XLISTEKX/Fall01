@@ -3,7 +3,9 @@ guid: 0ebef140d2d98a040bbe1063ad63cce7
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - minesweeper: {fileID: 5774397431534050752, guid: 8b54bffa744fc794c90e522fde99e6e8, type: 3}
+  - hackPrefabUI: {fileID: 466572482588114243, guid: 02940cfb41c7e6b4fa10168b42c27bb2, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

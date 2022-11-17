@@ -11,6 +11,7 @@ public class MinesweeperControler : MonoBehaviour
     public int bombCount;
     public float cellPadding;
     public int gameTime;
+    public int currentCellUncovered = 0;
     [Header("GameOffsets")]
     public GameObject gameOver;
     public Slider gameTimerSlider;
@@ -183,6 +184,21 @@ public class MinesweeperControler : MonoBehaviour
     public void resetGame()
     {
         SceneManager.LoadScene(0);
+    }
+
+    public void updateUncoveredCells()
+    {
+        currentCellUncovered++;
+        if(currentCellUncovered >= gameAreaSize * gameAreaSize - bombCount)
+        {
+            PlayerStatsInv psi = GameObject.FindGameObjectWithTag("EventSystem").GetComponent<PlayerStatsInv>();
+            psi.updateStats();
+            psi.money += 50;
+            psi.mineSweeperWon++;
+            psi.saveStats();
+
+            resetGame();
+        }
     }
 
 }

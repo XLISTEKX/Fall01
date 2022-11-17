@@ -356,17 +356,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cycle: 1
-  spawnSpeedingRate: 1.1
+  spawnSpeedingRate: 1.025
   maxSpeedRate: 0.5
-  minSpeedRate: 0.1
+  minSpeedRate: 0.06
   playerGamePlayControler: {fileID: 424451111}
   uiControler: {fileID: 1327201203}
   particle:
   - {fileID: 8424334993243357603, guid: 6d48c0f11bc1aff4a841fb4dd0435091, type: 3}
   - {fileID: 6955233010000494752, guid: 845e1c58cfaafc142b1f8fcfc2218cf6, type: 3}
+  - {fileID: 8050270552854726375, guid: 68ba33c578454c74aa0a85cdf50f3bdf, type: 3}
   spawnChance:
+  - 0.93
+  - 0.98
   - 1
-  - 0.05
   spawnOffset: {x: 0, y: -7}
   isDead: 0
   score: 0
@@ -388,6 +390,9 @@ MonoBehaviour:
   - {fileID: 0}
   currentSkin: {fileID: 0}
   currentSkinID: 0
+  allScore: 0
+  moneyGainded: 0
+  mineSweeperWon: 0
 --- !u!114 &424451114
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -400,8 +405,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f1f92681fe29e949b5b968c10826e32, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lookTime: 1.5
   eventIndex: 0
+  eventChances:
+  - 0.8
   currentEvent: {fileID: 0}
+  hackImage: {fileID: 466572482588114243, guid: 02940cfb41c7e6b4fa10168b42c27bb2, type: 3}
+  minesweeper: {fileID: 5774397431534050752, guid: 8b54bffa744fc794c90e522fde99e6e8, type: 3}
 --- !u!1001 &459950386
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -581,6 +591,42 @@ MonoBehaviour:
   m_RequiresDepthTexture: 0
   m_RequiresColorTexture: 0
   m_Version: 2
+--- !u!1 &642768457
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 642768458}
+  m_Layer: 5
+  m_Name: HackSpawner
+  m_TagString: HackUI
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &642768458
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 642768457}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1327201201}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: -250}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &670206962
 GameObject:
   m_ObjectHideFlags: 0
@@ -1026,6 +1072,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ebef140d2d98a040bbe1063ad63cce7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  minesweeper: {fileID: 0}
+  hackPrefabUI: {fileID: 0}
+  hackTime: 0
+  hackUI: {fileID: 0}
 --- !u!1 &1128217753
 GameObject:
   m_ObjectHideFlags: 0
@@ -1248,7 +1298,7 @@ GameObject:
   - component: {fileID: 1327201203}
   m_Layer: 5
   m_Name: GamePlayCanvas
-  m_TagString: Untagged
+  m_TagString: UIControler
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1302,8 +1352,8 @@ Canvas:
   m_GameObject: {fileID: 1327201197}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 0
-  m_Camera: {fileID: 0}
+  m_RenderMode: 1
+  m_Camera: {fileID: 519420031}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
@@ -1328,6 +1378,7 @@ RectTransform:
   m_Children:
   - {fileID: 360703018}
   - {fileID: 1371066667}
+  - {fileID: 642768458}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

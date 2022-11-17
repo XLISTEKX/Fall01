@@ -9,6 +9,7 @@ TagManager:
   - playerModel
   - GameSettings
   - Minesweeper
+  - HackUI
   layers:
   - Default
   - TransparentFX

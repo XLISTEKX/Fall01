@@ -49,19 +49,18 @@ public class GameplayControler : MonoBehaviour
         short xSpawnValue = (short) Random.Range(-playerGamePlayControler.gameplaySize.x, playerGamePlayControler.gameplaySize.x);
 
         float x = Random.value;
-        if(x < spawnChance[1])
+        for(int i = 0; i < particle.Length; i++)
         {
-            Instantiate(particle[1], new Vector2(xSpawnValue, 0) + spawnOffset, transform.rotation);
-        }
-        else 
-        {
-            Instantiate(particle[0], new Vector2(xSpawnValue, 0) + spawnOffset, transform.rotation);
-
+            if(x <= spawnChance[i])
+            {
+                Instantiate(particle[i], new Vector2(xSpawnValue, 0) + spawnOffset, transform.rotation);
+                break;
+            }
         }
 
 
         spawnRate = (maxSpeedRate - minSpeedRate) * Mathf.Pow(spawnSpeedingRate, -score) + minSpeedRate;
-        Debug.Log(spawnRate);
+
         CancelInvoke("spawnObject");
         Invoke("spawnObject", spawnRate);
     }

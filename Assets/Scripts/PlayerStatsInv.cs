@@ -10,6 +10,11 @@ public class PlayerStatsInv : MonoBehaviour
     public GameObject currentSkin;
     public int currentSkinID;
 
+    [Header("Player Stats")]
+    public uint allScore;
+    public uint moneyGainded;
+    public uint mineSweeperWon;
+
     private void Start()
     {
         currentSkin = skins[0];
@@ -18,18 +23,28 @@ public class PlayerStatsInv : MonoBehaviour
 
         //GetComponent<SkinsControler>().setSkin();
 
-        Debug.Log(money + "wczytane");
     }
 
     public void updateStats()
     {
         money = (uint)PlayerPrefs.GetInt("Money");
+        allScore=(uint)PlayerPrefs.GetInt("allScore");
+        mineSweeperWon = (uint)PlayerPrefs.GetInt("MSWon");
+        moneyGainded = (uint)PlayerPrefs.GetInt("MoneyOverall");
     }
 
     public void saveStats()
     {
+        long gained = (int) money - PlayerPrefs.GetInt("Money");
+        if (gained > 0)
+        {
+            moneyGainded += (uint)gained;
+        }
+
         PlayerPrefs.SetInt("Money", (int) money);
-        Debug.Log(money + "zapisane");
+        PlayerPrefs.SetInt("allScore", (int)allScore);
+        PlayerPrefs.SetInt("MSWon", (int)mineSweeperWon);
+        PlayerPrefs.SetInt("MoneyOverall", (int)moneyGainded);
         PlayerPrefs.Save();
     }
 

@@ -146,6 +146,10 @@ public class UIMainMenuControler : MonoBehaviour
                     SceneManager.LoadScene(2);
                     return;
                 }
+            case 5:
+                {
+                    return;
+                }
         }
     }
     /*---------------------------------------------------------------------------------

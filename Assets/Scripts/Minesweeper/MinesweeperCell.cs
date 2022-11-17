@@ -50,6 +50,7 @@ public class MinesweeperCell : MonoBehaviour
     public void unCoverCell()
     {
         isClicked = true;
+        minesweeperControler.updateUncoveredCells();
         cover.SetActive(false);
     }
     public void clickCell()
